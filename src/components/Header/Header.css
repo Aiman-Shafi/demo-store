@@ -1,0 +1,23 @@
+.header{
+    text-align: center;
+}
+.header > nav{
+    background-color: black;
+    line-height: 40px;
+    margin-top: 10px;
+    text-align: start;
+    padding-left: 5%;
+}
+
+nav > a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: all .5s;
+    text-transform: uppercase;
+}
+
+nav > a:hover{
+    background-color: grey;
+    color: white;    
+}
