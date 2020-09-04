@@ -6,17 +6,14 @@ import Cart from '../Cart/Cart';
 
 const Shop = () => {
     
-    const numProducts = fakeData.slice(0,10);
-    const [product, setProduct] = useState(numProducts);
-    const [cart, setCart] = useState([]);
-    const addtoCart = (addProuct) => {
-    //const key = product.key;
-    //const findPrd = fakeData.find(pd => pd.key !== key);   
-    //    console.log('added', addProduct);
-        const newCart = [...cart, product];
-        setCart(newCart);
-    //    console.log(cart);
-
+        const numProducts = fakeData.slice(0,10);
+        const [product, setProduct] = useState(numProducts);
+        const [cart, setCart] = useState([]);
+        
+        const addtoCart = (addProduct) => {
+        const key = addProduct.key;
+        const newCart = fakeData.find(pd => pd.key === key);   
+        setCart([...cart, newCart]);
     }
     
 

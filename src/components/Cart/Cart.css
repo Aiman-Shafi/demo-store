@@ -1,0 +1,22 @@
+.cartAdd {
+    padding: 0px 70px;
+    border: 1px solid darkgoldenrod;
+    margin-left: 10%;
+    border-radius: 10px;
+    width: 15%;
+    left: 60%;
+    top: 30%;
+    position: fixed;
+    box-shadow: #564f4f1c 0px 1px 7px 3px;
+}
+
+.button{
+    width: 200px;
+    height: 35px;
+    background-color: goldenrod;
+    border: 1px solid darkgoldenrod;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+}

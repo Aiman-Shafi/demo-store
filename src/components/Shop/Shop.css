@@ -4,11 +4,12 @@
 }
 
 .product-container{
-    width: 80%;
+    width: 70%;
 }
 
 .cart{
-    padding: 0 3%;
+
     border-left: 1px solid lightgray;
-    margin-left: 2%;
+    margin-left: 0%;
+
 }
