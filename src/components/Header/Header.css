@@ -21,3 +21,12 @@ nav > a:hover{
     background-color: grey;
     color: white;    
 }
+
+.sign-up{
+    width: 100px;
+    height: 30px;
+    background-color: goldenrod;
+    border: 1px solid darkgoldenrod;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Cart.css'
 
 const Cart = (props) => {
     const cart = props.cart;
-    console.log(cart);
-    const totalPrice = cart.reduce((total, productInfo) => total + productInfo.price , 0 );
+    //const totalPrice = cart.reduce((total, productInfo) => total + productInfo.price * productInfo.quantity, 0 );
+    let totalPrice = 0;
+    for (let i=0 ; i < cart.length ; i++){
+        const product = cart[i];
+        totalPrice = totalPrice + (product.price * product.quantity);
+        debugger;
+    }
 
     let shipping = 20;
     
@@ -26,7 +32,6 @@ const Cart = (props) => {
 
     const tax = (totalPrice*.15).toFixed(2);
     const totalCost = (totalPrice+shipping+Number(tax)).toFixed(2);
-    
     return (
         <div className='cartAdd'>
             
@@ -35,7 +40,9 @@ const Cart = (props) => {
             <h5>Shipping Cost: $ {shipping.toFixed(2)}</h5>
             <h5>Tax 15%: $ {tax}</h5>
             <h4>Total Price: $ {totalCost} </h4>
-            <button className='button'>CheckOut</button>
+            <Link to='/review'>
+                 <button className='button'> Review Cart </button>
+            </Link> 
 
         </div>
     );

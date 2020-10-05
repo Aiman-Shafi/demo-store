@@ -3,6 +3,7 @@ import fakeData from '../../fakeData';
 import './Shop.css';
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
+import { addToDatabaseCart } from '../../utilities/databaseManager';
 
 const Shop = () => {
     
@@ -12,8 +13,21 @@ const Shop = () => {
         
         const addtoCart = (addProduct) => {
         const key = addProduct.key;
-        const newCart = fakeData.find(pd => pd.key === key);   
-        setCart([...cart, newCart]);
+        const sameProduct = cart.find(pd => pd.key === key)
+        let count = 1;
+        let cartItems;
+        if(sameProduct){
+            count = sameProduct.quantity + 1;
+            sameProduct.quantity = count;
+            const others = cart.filter(pd => pd.key !== key);
+            cartItems = [...others, sameProduct]
+        }
+        else{
+            addProduct.quantity = 1;
+            cartItems = [...cart, addProduct]
+        } 
+        setCart(cartItems);
+        addToDatabaseCart(addProduct.key, count)
     }
     
 
@@ -21,7 +35,15 @@ const Shop = () => {
         <div className='shop-container'>
             <div className='product-container'>
                 {
-                    product.map(allProduct => <Product addtoCart={addtoCart} key={Math.random()} productInfo={allProduct}></Product>)
+                    product.map(allProduct => 
+                    <Product
+                    
+                    showAddtoCart = {true} 
+                    addtoCart={addtoCart} 
+                    key={Math.random()} 
+                    productInfo={allProduct}>
+
+                    </Product>)
                 }
             </div>
             <div className='cart'>
@@ -30,21 +52,5 @@ const Shop = () => {
         </div>
     );
 };
-
-// Fecthing products
-// function ProductContainer(){
-//     const numProducts = fakeData.slice(0,10);
-//     const [product, setProduct] = useState(numProducts);
-//     const [cart, setCart] = useState([]);
-//     const addtoCart = (addProduct) => {
-//         console.log('added', addProduct);
-//         const newCart = [...cart, product];
-//         setCart(newCart);
-//     }
-
-    
-//     return product.map(allProduct => <Product addtoCart={addtoCart} productInfo={allProduct}></Product> )
-// }
-
 
 export default Shop;
