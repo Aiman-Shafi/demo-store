@@ -3,14 +3,31 @@ import fakeData from '../../fakeData';
 import './Shop.css';
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
-import { addToDatabaseCart } from '../../utilities/databaseManager';
+import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Shop = () => {
     
         const numProducts = fakeData.slice(0,10);
         const [product, setProduct] = useState(numProducts);
         const [cart, setCart] = useState([]);
-        
+
+        //Savaing data in local database
+        useEffect(()=>{
+            const savedCart = getDatabaseCart();
+            const productKey = Object.keys(savedCart);
+            const previousCart = productKey.map(existingKey => {
+                const product = fakeData.find(pd => pd.key === existingKey);
+                product.quantity = savedCart[existingKey]
+                return product
+            })
+            setCart(previousCart);
+
+        }, [])
+
+        // button handler
         const addtoCart = (addProduct) => {
         const key = addProduct.key;
         const sameProduct = cart.find(pd => pd.key === key)
@@ -47,7 +64,11 @@ const Shop = () => {
                 }
             </div>
             <div className='cart'>
-                <Cart cart={cart} />
+                <Cart cart={cart}>
+                    <Link to='/review'>
+                        <button className='button'> Review Cart </button>
+                    </Link>
+                </Cart>    
             </div>
         </div>
     );

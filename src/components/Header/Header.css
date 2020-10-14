@@ -1,6 +1,14 @@
 .header{
     text-align: center;
 }
+
+.top-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    align-items: center;
+}
+
 .header > nav{
     background-color: black;
     line-height: 40px;
